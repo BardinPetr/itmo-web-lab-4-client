@@ -21,7 +21,7 @@ export class NavbarComponent {
         {
             title: "Logout",
             icon: "pi pi-fw pi-sign-out",
-            routerLink: "/logout",
+            routerLink: "/login", // TODO: logout
             visible: true
         },
     ];

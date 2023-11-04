@@ -5,6 +5,7 @@ import {PointTableComponent} from './point-table/point-table.component';
 import {PointCanvasComponent} from './point-canvas/point-canvas.component';
 import {PointPageComponent} from './point-page.component';
 import {BrowserModule} from "@angular/platform-browser";
+import {TableModule} from "primeng/table";
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import {BrowserModule} from "@angular/platform-browser";
         PointPageComponent
     ],
     imports: [
-        CommonModule
+        CommonModule,
+        TableModule
     ],
     exports: [
         PointPageComponent
