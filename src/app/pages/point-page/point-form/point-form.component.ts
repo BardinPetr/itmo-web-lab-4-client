@@ -1,8 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
 import {rangeByConstraint} from "../../../utils/iter";
 import {ConstraintsService} from "../../../services/constraints/constraints.service";
 import {Point} from "../../../libmodel/point";
+import {AreaScaleService} from "../../../services/area-scale.service";
+import {PointCheckDTO} from "../../../libmodel/pointCheckDTO";
+import {floatRangeValidator} from "../../../directives/float-range-validator.directive";
 
 @Component({
   selector: 'app-point-form',
@@ -13,12 +16,13 @@ export class PointFormComponent {
   xOptions: number[] = []
   form: FormGroup
 
-  constructor(constraints: ConstraintsService) {
+  constructor(private areaConfig: AreaScaleService,
+              public constraints: ConstraintsService) {
     this.xOptions = rangeByConstraint(constraints.xConstraint)
 
     this.form = new FormGroup({
-      x: new FormControl<number | null>(null),
-      y: new FormControl<number | null>(null)
+      x: new FormControl<number | null>(null, floatRangeValidator(constraints.xConstraint)),
+      y: new FormControl<number | null>(null, floatRangeValidator(constraints.yConstraint))
     })
   }
 
@@ -28,6 +32,13 @@ export class PointFormComponent {
 
   send() {
     if (this.form.invalid) return
-    console.warn(this.point)
+
+    let request: PointCheckDTO = {
+      point: this.point!,
+      area: this.areaConfig.config.getValue()
+    }
+
+    console.log(`Sending point check request:`)
+    console.log(request)
   }
 }

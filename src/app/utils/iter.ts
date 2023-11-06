@@ -1,4 +1,4 @@
-import {RangeConstraint} from "../services/constraints/RangeConstraint";
+import {RangeConstraint} from "../services/constraints/range-constraint";
 
 export const range = (min: number, max: number): number[] =>
   [...Array(max - min).keys()].map(i => min + i)

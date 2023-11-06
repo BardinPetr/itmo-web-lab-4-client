@@ -9,7 +9,10 @@ insert_final_newline = true
 trim_trailing_whitespace = true
 
 [*.ts]
-quote_type = single
+ij_any_parentheses_expression_new_line_after_left_paren = false
+ij_any_parentheses_expression_right_paren_on_new_line = false
+ij_typescript_parentheses_expression_new_line_after_left_paren = false
+ij_typescript_parentheses_expression_right_paren_on_new_line = false
 
 [*.md]
 max_line_length = off

@@ -10,6 +10,8 @@ import {AreaControlComponent} from './area-control/area-control.component';
 import {RadioButtonModule} from "primeng/radiobutton";
 import {ReactiveFormsModule} from "@angular/forms";
 import {CardModule} from "primeng/card";
+import {InputTextModule} from "primeng/inputtext";
+import {PipesModule} from "../../pipes/pipes.module";
 
 
 @NgModule({
@@ -26,7 +28,9 @@ import {CardModule} from "primeng/card";
     ButtonModule,
     RadioButtonModule,
     CardModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    InputTextModule,
+    PipesModule
   ],
   exports: [
     PointPageComponent

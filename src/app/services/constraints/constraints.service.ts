@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {RangeConstraint} from "./RangeConstraint";
+import {RangeConstraint} from "./range-constraint";
 
 @Injectable({
   providedIn: "root"

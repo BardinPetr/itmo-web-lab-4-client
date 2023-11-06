@@ -1,21 +1,29 @@
 import {Injectable} from '@angular/core';
+import {AreaConfig} from "../libmodel/areaConfig";
+import {BehaviorSubject, map, Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AreaScaleService {
 
-  private value: number = 1
+  public readonly config = new BehaviorSubject<AreaConfig>({r: 1})
 
   constructor() {
   }
 
-  public setScale(value: number) {
-    console.warn(`Changed R=${value}`)
-    this.value = value;
+  get areaScale(): Observable<number> {
+    return this
+      .config
+      .asObservable()
+      .pipe(map(x => x.r))
   }
 
-  get scale(): number {
-    return this.value
+  public setScale(value: number) {
+    console.warn(`Changed R=${value}`)
+    this.config.next({
+      ...this.config.getValue(),
+      r: value
+    })
   }
 }
