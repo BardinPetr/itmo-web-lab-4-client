@@ -1,0 +1,28 @@
+<p-card>
+  <form [formGroup]="form">
+    <label for="xValue">X:</label>
+    <div class="field flex flex-row"  id="xValue">
+      <div class="field-checkbox flex-1"
+           *ngFor="let val of xOptions; let i = index"
+      >
+        <p-radioButton
+          [inputId]="'x_val_'+i"
+          [value]="val"
+          formControlName="x">
+        </p-radioButton>
+        <label [for]="'x_val_'+i" class="ml-2" [textContent]="val"></label>
+      </div>
+    </div>
+    <div class="field">
+      <label for="yValue">Y:</label>
+      <input id="yValue"
+             type="number"
+             formControlName="y"
+             class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+    </div>
+    <p-button label="Check"
+              [disabled] = "!form.valid"
+              (onClick)="send()"
+    ></p-button>
+  </form>
+</p-card>

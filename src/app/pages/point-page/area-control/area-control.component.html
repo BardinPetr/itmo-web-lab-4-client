@@ -1,0 +1,18 @@
+<p-card>
+  <p class="m-0 flex">
+    Select area scale R:
+  </p>
+
+  <form class="flex flex-row gap-3">
+    <div class="field-checkbox"
+         *ngFor="let val of valueSteps; let i = index"
+    >
+      <p-radioButton
+        [inputId]="'r_val_'+i"
+        [value]="val"
+        [formControl]="rValueControl">
+      </p-radioButton>
+      <label [for]="'r_val_'+i" class="ml-2" [textContent]="val"></label>
+    </div>
+  </form>
+</p-card>

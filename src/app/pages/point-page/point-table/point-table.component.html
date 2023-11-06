@@ -1,0 +1,40 @@
+<h1>table</h1>
+<p-table [value]="points"
+         [columns]="columns"
+         [paginator]="true"
+         [showCurrentPageReport]="true"
+         [rows]="10"
+         currentPageReportTemplate="{first}-{last} / {totalRecords}"
+>
+  <ng-template pTemplate="header" let-cols>
+    <tr>
+      <th *ngFor="let i of cols" [pSortableColumn]="i.sort">
+        {{ i.header }}
+        <p-sortIcon *ngIf="i.sort" [field]="i.sort"/>
+      </th>
+    </tr>
+  </ng-template>
+
+  <ng-template pTemplate="body" let-point>
+    <tr>
+      <td>{{point.timestamp | date : 'MM.dd.yy HH:mm:ss'}}</td>
+      <td>
+        <i class="pi"
+           [ngClass]="{ 'text-green-500 pi-check-circle': point.inside, 'text-red-500 pi-times-circle': !point.inside }"
+        ></i>
+      </td>
+      <td>{{point.areaR   | number: '0.2-2'}}</td>
+      <td>{{point.pointX  | number: '0.3-3'}}</td>
+      <td>{{point.pointY  | number: '0.3-3'}}</td>
+      <td>{{point.executionTimeNs | number: '0.0-0'}}</td>
+    </tr>
+  </ng-template>
+
+  <ng-template pTemplate="paginatorleft">
+    <p-button
+      icon="pi pi-trash"
+      class="p-button-danger"
+      (click)="deleteAll()">
+    </p-button>
+  </ng-template>
+</p-table>
