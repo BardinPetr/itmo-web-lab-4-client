@@ -1,4 +1,4 @@
-<p-card>
+<p-card header="Check point">
   <form [formGroup]="form">
     <label for="xValue">X:</label>
     <div class="field flex flex-row" id="xValue">
@@ -26,12 +26,12 @@
             Should be a number
           </span>
           <span *ngIf="form.controls['y'].errors?.['out-of-range']">
-            Not in {{constraints.yConstraint | floatRangeDescription}}
+            Not in {{constraints.yConstraint | async | floatRangeDescription}}
           </span>
         </small>
       </div>
       <ng-template #normal_msg>
-        <small>{{constraints.yConstraint | floatRangeDescription}}</small>
+        <small>{{constraints.yConstraint | async | floatRangeDescription}}</small>
       </ng-template>
     </div>
     <div class="flex justify-content-left gap-2">

@@ -1,29 +1,28 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
 import {rangeByConstraint} from "../../../utils/iter";
 import {ConstraintsService} from "../../../services/constraints/constraints.service";
 import {AreaScaleService} from "../../../services/area-scale.service";
-import {Point, PointCheckDTO} from "itmo-web-lab4";
+import {DoubleRange, Point, PointCheckDTO} from "itmo-web-lab4";
 import {floatRangeValidator} from "../../../directives/float-range-validator.directive";
 import {PointCheckService} from "../../../services/point-check.service";
+import {zip} from "rxjs";
 
 @Component({
   selector: 'app-point-form',
   templateUrl: './point-form.component.html',
   styleUrls: ['./point-form.component.sass']
 })
-export class PointFormComponent {
+export class PointFormComponent implements OnInit {
   xOptions: number[] = []
   form: FormGroup
 
   constructor(public areaConfig: AreaScaleService,
               public constraints: ConstraintsService,
               private pointCheck: PointCheckService) {
-    this.xOptions = rangeByConstraint(constraints.xConstraint)
-
     this.form = new FormGroup({
-      x: new FormControl<number | null>(null, floatRangeValidator(constraints.xConstraint)),
-      y: new FormControl<number | null>(null, floatRangeValidator(constraints.yConstraint))
+      x: new FormControl<number | null>(null),
+      y: new FormControl<number | null>(null)
     })
   }
 
@@ -33,6 +32,11 @@ export class PointFormComponent {
 
   get isInvalid(): boolean {
     return this.form.invalid || this.areaConfig.config.value.r == 0
+  }
+
+  ngOnInit() {
+    zip(this.constraints.xConstraint, this.constraints.yConstraint)
+      .subscribe(this.setup.bind(this))
   }
 
   send() {
@@ -45,5 +49,11 @@ export class PointFormComponent {
     }
 
     this.pointCheck.check(request)
+  }
+
+  private setup([xRange, yRange]: DoubleRange[]) {
+    this.xOptions = rangeByConstraint(xRange)
+    this.form.controls["x"].validator = floatRangeValidator(xRange)
+    this.form.controls["y"].validator = floatRangeValidator(yRange)
   }
 }

@@ -1,10 +1,10 @@
 import {AbstractControl, ValidationErrors, ValidatorFn, Validators} from "@angular/forms";
-import {RangeConstraint} from "../services/constraints/range-constraint";
+import {DoubleRange} from "itmo-web-lab4";
 
 const EPS = 1e-6
 const PRECISION_LEN = Math.round(1 / EPS)
 
-export const floatRangeValidator = ({min, max, maxInclusive, minInclusive}: RangeConstraint): ValidatorFn =>
+export const floatRangeValidator = ({min, max, maxInclusive, minInclusive}: DoubleRange): ValidatorFn =>
   Validators.compose([
     Validators.required,
     Validators.pattern(/^-?\d+(\.\d+)?$/),

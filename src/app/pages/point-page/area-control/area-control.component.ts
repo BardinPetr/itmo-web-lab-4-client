@@ -3,6 +3,7 @@ import {rangeByConstraint} from "../../../utils/iter";
 import {FormControl} from "@angular/forms";
 import {AreaScaleService} from "../../../services/area-scale.service";
 import {ConstraintsService} from "../../../services/constraints/constraints.service";
+import {DoubleRange} from "itmo-web-lab4";
 import {floatRangeValidator} from "../../../directives/float-range-validator.directive";
 
 @Component({
@@ -16,23 +17,27 @@ export class AreaControlComponent implements OnInit {
 
   constructor(private areaConfig: AreaScaleService,
               private constraints: ConstraintsService) {
-    const r = Math.round(areaConfig.config.value.r)
     this.rValueControl = new FormControl<number>(
-      r,
-      {
-        validators: [floatRangeValidator(constraints.rConstraint)],
-        nonNullable: true
-      }
+      Math.round(this.areaConfig.config.value.r),
+      {nonNullable: true}
     )
 
-    this.valueSteps = rangeByConstraint(this.constraints.rConstraint)
-      .filter(i => i !== 0)
-  };
-
-  ngOnInit(): void {
     this
       .rValueControl
       .valueChanges
       .subscribe(x => this.areaConfig.setScale(x))
+  };
+
+  ngOnInit(): void {
+    this
+      .constraints
+      .rConstraint
+      .subscribe(this.setup.bind(this))
+  }
+
+  private setup(constraint: DoubleRange) {
+    this.rValueControl.validator = floatRangeValidator(constraint)
+    this.valueSteps = rangeByConstraint(constraint)
+      .filter(i => i !== 0)
   }
 }
