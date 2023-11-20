@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {PointResultDTO} from "../../../libmodel/pointResultDTO";
+import {PointResultDTO} from "itmo-web-lab4";
 
 @Component({
   selector: 'app-point-table',

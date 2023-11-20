@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {PointCheckDTO} from "../libmodel/pointCheckDTO";
+import {PointCheckDTO} from "itmo-web-lab4";
 
 @Injectable({
   providedIn: 'root'

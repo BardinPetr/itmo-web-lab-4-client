@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {AreaConfig} from "../libmodel/areaConfig";
+import {AreaConfig} from "itmo-web-lab4";
 import {BehaviorSubject, map, Observable} from "rxjs";
 
 @Injectable({
