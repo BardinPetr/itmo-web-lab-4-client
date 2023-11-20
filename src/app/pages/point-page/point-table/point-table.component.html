@@ -1,5 +1,5 @@
 <p-card header="Results">
-  <p-table [value]="points"
+  <p-table [value]="(points | async) ?? []"
            [columns]="columns"
            [paginator]="true"
            [showCurrentPageReport]="true"
@@ -17,16 +17,16 @@
 
     <ng-template pTemplate="body" let-point>
       <tr>
-        <td>{{point.timestamp | date : 'MM.dd.yy HH:mm:ss'}}</td>
+        <td>{{point.timestamp*1000 | date : 'dd.MM.yy hh:mm:ss'}}</td>
         <td>
           <i class="pi"
              [ngClass]="{ 'text-green-500 pi-check-circle': point.inside, 'text-red-500 pi-times-circle': !point.inside }"
           ></i>
         </td>
         <td>{{point.areaR   | number: '0.2-2'}}</td>
-        <td>{{point.pointX  | number: '0.3-3'}}</td>
-        <td>{{point.pointY  | number: '0.3-3'}}</td>
-        <td>{{point.executionTimeNs | number: '0.0-0'}}</td>
+        <td>{{point.pointX  | number: '0.2-2'}}</td>
+        <td>{{point.pointY  | number: '0.2-2'}}</td>
+        <td>{{point.executionTimeNs/1e3 | number: '0.0-0'}}</td>
       </tr>
     </ng-template>
 
@@ -34,7 +34,7 @@
       <p-button
         icon="pi pi-trash"
         class="p-button-danger"
-        (click)="deleteAll()">
+        (click)="removeAll()">
       </p-button>
     </ng-template>
   </p-table>

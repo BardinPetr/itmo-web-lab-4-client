@@ -4245,8 +4245,8 @@ istanbul-reports@^3.0.5:
     istanbul-lib-report "^3.0.0"
 
 itmo-web-lab4@/home/petr/Desktop/itmo-web-lab-4-server/build/client/dist.tar.gz:
-  version "1.1.0"
-  resolved "/home/petr/Desktop/itmo-web-lab-4-server/build/client/dist.tar.gz#d6ae9802d426df8bf70a3ebf8cfd0152fdedb51d"
+  version "1.3.0"
+  resolved "/home/petr/Desktop/itmo-web-lab-4-server/build/client/dist.tar.gz#71d64bd1e3b9c5ef88de01df02644fbfc51a16c1"
   dependencies:
     tslib "^2.3.0"
 

@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {rangeByConstraint} from "../../../utils/iter";
 import {FormControl} from "@angular/forms";
 import {AreaScaleService} from "../../../services/area-scale.service";
-import {ConstraintsService} from "../../../services/constraints/constraints.service";
+import {ConstraintsService} from "../../../services/constraints.service";
 import {DoubleRange} from "itmo-web-lab4";
 import {floatRangeValidator} from "../../../directives/float-range-validator.directive";
 

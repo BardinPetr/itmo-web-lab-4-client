@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
 import {rangeByConstraint} from "../../../utils/iter";
-import {ConstraintsService} from "../../../services/constraints/constraints.service";
+import {ConstraintsService} from "../../../services/constraints.service";
 import {AreaScaleService} from "../../../services/area-scale.service";
-import {DoubleRange, Point, PointCheckDTO} from "itmo-web-lab4";
+import {DoubleRange, Point, PointRequestDTO} from "itmo-web-lab4";
 import {floatRangeValidator} from "../../../directives/float-range-validator.directive";
 import {PointCheckService} from "../../../services/point-check.service";
 import {zip} from "rxjs";
@@ -42,10 +42,9 @@ export class PointFormComponent implements OnInit {
   send() {
     if (this.form.invalid) return
 
-    let request: PointCheckDTO = {
+    let request: PointRequestDTO = {
       point: this.point!,
-      area: this.areaConfig.config.getValue(),
-      timestamp: ""
+      area: this.areaConfig.config.getValue()
     }
 
     this.pointCheck.check(request)
