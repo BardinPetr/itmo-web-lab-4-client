@@ -19,12 +19,31 @@
              id="yValue"
              type="number"
              formControlName="y"
-             class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
-      <small>{{constraints.yConstraint | floatRangeDescription}}</small>
+             class="focus:border-primary w-full">
+      <div *ngIf="form.controls['y'].invalid && form.controls['y'].touched; else normal_msg">
+        <small class="p-error">
+          <span *ngIf="form.controls['y'].errors?.['required']">
+            Should be a number
+          </span>
+          <span *ngIf="form.controls['y'].errors?.['out-of-range']">
+            Not in {{constraints.yConstraint | floatRangeDescription}}
+          </span>
+        </small>
+      </div>
+      <ng-template #normal_msg>
+        <small>{{constraints.yConstraint | floatRangeDescription}}</small>
+      </ng-template>
     </div>
-    <p-button label="Check"
-              [disabled]="!form.valid"
-              (onClick)="send()"
-    ></p-button>
+    <div class="flex justify-content-left gap-2">
+      <p-button label="Check"
+                [disabled]="isInvalid"
+                (onClick)="send()"
+      />
+      <div *ngIf="form.touched && this.form.controls['x'].errors?.['required']">
+        <small class="p-error">
+          <p-message severity="error" text="Not all arguments present"/>
+        </small>
+      </div>
+    </div>
   </form>
 </p-card>

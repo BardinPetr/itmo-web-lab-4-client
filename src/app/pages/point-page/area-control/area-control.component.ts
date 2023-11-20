@@ -26,6 +26,7 @@ export class AreaControlComponent implements OnInit {
     )
 
     this.valueSteps = rangeByConstraint(this.constraints.rConstraint)
+      .filter(i => i !== 0)
   };
 
   ngOnInit(): void {
