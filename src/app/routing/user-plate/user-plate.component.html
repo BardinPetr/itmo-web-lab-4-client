@@ -1,0 +1,25 @@
+<div class="card"
+     *ngIf="(authService.authenticated | async); else not_authenticated"
+>
+  <p-chip
+    [label]="(authService.username | async)"
+    *ngIf="(authService.username | async)"
+    icon="pi pi-user"
+  />
+  <p-button
+    label="Logout"
+    severity="secondary"
+    [outlined]="true"
+    icon="pi pi-sign-out"
+    (onClick)="authService.logout()"
+    [disabled]="!(authService.authenticated | async)"
+  />
+</div>
+
+<ng-template #not_authenticated>
+  <p-button
+    (onClick)="authService.login()"
+    class="p-button-success"
+    label="Login"
+  />
+</ng-template>

@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 
 import {AppComponent} from './app.component';
-import {AppRoutingModule} from "./app-routing/app-routing.module";
+import {AppRoutingModule} from "./routing/app-routing.module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {PagesModule} from "./pages/pages.module";
 import {ServicesModule} from "./services/services.module";
@@ -28,6 +28,7 @@ import {HttpClientModule} from "@angular/common/http";
     PagesModule
   ],
   providers: [],
+  exports: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {

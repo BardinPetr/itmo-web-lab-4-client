@@ -2,23 +2,21 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from "@angular/router";
 import {HomePageComponent} from "../pages/home-page/home-page.component";
 import {PointPageComponent} from "../pages/point-page/point-page.component";
-import {HomePageModule} from "../pages/home-page/home-page.module";
-import {PointPageModule} from "../pages/point-page/point-page.module";
 import {NavbarComponent} from "./navbar/navbar.component";
 import {CommonModule} from "@angular/common";
 import {MenubarModule} from "primeng/menubar";
-import {LoginPageComponent} from "../pages/login-page/login-page.component";
 import {PagesModule} from "../pages/pages.module";
+import {ButtonModule} from "primeng/button";
+import {UserPlateComponent} from "./user-plate/user-plate.component";
+import {ChipModule} from "primeng/chip";
+import {isAuthenticated} from "../auth/auth-guard.service";
 
 const routes: Routes = [
   {
     path: 'points',
     title: 'Points',
-    component: PointPageComponent
-  },
-  {
-    path: 'login',
-    component: LoginPageComponent
+    component: PointPageComponent,
+    canActivate: [isAuthenticated]
   },
   {
     path: '',
@@ -33,16 +31,18 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
+    RouterModule.forRoot(routes),
     CommonModule,
     MenubarModule,
     PagesModule,
-    RouterModule.forRoot(routes),
+    ButtonModule,
+    ChipModule
   ],
   declarations: [
-    NavbarComponent
+    NavbarComponent, UserPlateComponent
   ],
   exports: [
-    RouterModule, NavbarComponent
+    RouterModule, NavbarComponent, UserPlateComponent
   ]
 })
 export class AppRoutingModule {

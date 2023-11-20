@@ -6,23 +6,17 @@ import {MenuItem} from "primeng/api";
   templateUrl: './navbar.component.html',
 })
 export class NavbarComponent {
+
   menuItems: MenuItem[] = [
     {
-      title: "Home",
+      label: "Home",
       icon: "pi pi-fw pi-home",
       routerLink: "/"
     },
     {
-      title: "Points",
+      label: "Points",
       icon: "pi pi-fw pi-map-marker",
       routerLink: "/points",
-      disabled: false
-    },
-    {
-      title: "Logout",
-      icon: "pi pi-fw pi-sign-out",
-      routerLink: "/login", // TODO: logout
-      visible: true
     },
   ];
 }

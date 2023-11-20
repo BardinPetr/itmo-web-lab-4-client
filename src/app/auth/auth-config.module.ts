@@ -30,6 +30,7 @@ const baseUrl = window.location.origin
       responseType: 'code',
       silentRenew: true,
       useRefreshToken: true,
+      ignoreNonceAfterRefresh: true,
       renewTimeBeforeTokenExpiresInSeconds: 30,
       secureRoutes: [environment.apiUrl],
       ...keycloakCustomParams
