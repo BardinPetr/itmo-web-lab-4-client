@@ -4256,9 +4256,10 @@ istanbul-reports@^3.0.5:
     html-escaper "^2.0.0"
     istanbul-lib-report "^3.0.0"
 
-"itmo-web-lab4@file:../itmo-web-lab-4-server/build/client/dist.tar.gz":
-  version "1.3.0"
-  resolved "file:../itmo-web-lab-4-server/build/client/dist.tar.gz#71d64bd1e3b9c5ef88de01df02644fbfc51a16c1"
+itmo-web-lab4@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/itmo-web-lab4/-/itmo-web-lab4-1.4.0.tgz#0e73d985db71e4a51db7a0e5e2a3c329a8c258f4"
+  integrity sha512-3eSAJzggM6mnjZvVLu9tFiQTdZDePi0lxKSYXc7m0VSSK9bwRb1DylFVhRBxnDMPPrNfCVluOqcsX3eZhUR6LA==
   dependencies:
     tslib "^2.3.0"
 

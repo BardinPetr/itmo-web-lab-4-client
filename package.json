@@ -20,7 +20,7 @@
     "@angular/router": "^16.1.2",
     "angular-auth-oidc-client": "16.0.1",
     "chart.js": "^4.4.0",
-    "itmo-web-lab4": "/home/petr/Desktop/itmo-web-lab-4-server/build/client/dist.tar.gz",
+    "itmo-web-lab4": "^1.4.0",
     "ng2-charts": "^5.0.3",
     "primeflex": "^3.3.1",
     "primeicons": "^6.0.1",

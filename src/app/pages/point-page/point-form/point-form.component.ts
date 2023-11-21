@@ -3,7 +3,7 @@ import {FormControl, FormGroup} from "@angular/forms";
 import {rangeByConstraint} from "../../../utils/iter";
 import {ConstraintsService} from "../../../services/constraints.service";
 import {AreaScaleService} from "../../../services/area-scale.service";
-import {DoubleRange, Point, PointRequestDTO} from "itmo-web-lab4";
+import {DoubleRange, Point} from "itmo-web-lab4";
 import {floatRangeValidator} from "../../../directives/float-range-validator.directive";
 import {PointCheckService} from "../../../services/point-check.service";
 import {zip} from "rxjs";

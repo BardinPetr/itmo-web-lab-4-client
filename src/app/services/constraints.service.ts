@@ -32,8 +32,10 @@ export class ConstraintsService {
   }
 
   public update() {
-    zip(["x", "y", "r"].map(i => this.service.getConstraint(i)))
-      .subscribe(([x, y, r]) =>
+    zip(["x", "y", "r"].map(i =>
+      this.service.getConstraint(i as ('x' | 'y' | 'r'), 'body') as (Observable<DoubleRange>)
+    ))
+      .subscribe(([x, y, r]: DoubleRange[]) =>
         this.constraints.next({x, y, r})
       )
   }
