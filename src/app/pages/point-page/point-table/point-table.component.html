@@ -17,7 +17,7 @@
 
     <ng-template pTemplate="body" let-point>
       <tr>
-        <td>{{point.timestamp * 1000 | date : 'dd.MM.yy hh:mm:ss'}}</td>
+        <td>{{point.timestamp * 1000 | date : 'dd.MM.yy HH:mm:ss'}}</td>
         <td *ngIf="(auth.isInRole('admin') | async) ?? false">
           <p-chip [label]="point.owner" icon="pi pi-user"></p-chip>
         </td>

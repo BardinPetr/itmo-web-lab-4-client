@@ -41,13 +41,7 @@ export class PointFormComponent implements OnInit {
 
   send() {
     if (this.form.invalid) return
-
-    let request: PointRequestDTO = {
-      point: this.point!,
-      area: this.areaConfig.config.getValue()
-    }
-
-    this.pointCheck.check(request)
+    this.pointCheck.check(this.point!)
   }
 
   private setup([xRange, yRange]: DoubleRange[]) {

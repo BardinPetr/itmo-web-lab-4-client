@@ -14,7 +14,7 @@ import {InputTextModule} from "primeng/inputtext";
 import {PipesModule} from "../../pipes/pipes.module";
 import {MessageModule} from "primeng/message";
 import {ChipModule} from "primeng/chip";
-
+import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -34,7 +34,8 @@ import {ChipModule} from "primeng/chip";
     InputTextModule,
     PipesModule,
     MessageModule,
-    ChipModule
+    ChipModule,
+    NgChartsModule
   ],
   exports: [
     PointPageComponent

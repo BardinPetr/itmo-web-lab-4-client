@@ -1,2 +1,9 @@
 <p-card header="Points">
+  <div class="chart-container">
+    <canvas baseChart
+            [data]="data"
+            [options]="options"
+            [type]="'scatter'">
+    </canvas>
+  </div>
 </p-card>

@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
-import {PointControllerService, PointRequestDTO} from "itmo-web-lab4";
+import {Point, PointControllerService, PointRequestDTO} from "itmo-web-lab4";
 import {PointsService} from "./points.service";
+import {AreaScaleService} from "./area-scale.service";
 
 @Injectable({
   providedIn: 'root'
@@ -8,10 +9,19 @@ import {PointsService} from "./points.service";
 export class PointCheckService {
 
   constructor(private api: PointControllerService,
-              private pointService: PointsService) {
+              private pointService: PointsService,
+              private areaConfig: AreaScaleService) {
   }
 
-  public check(request: PointRequestDTO) {
+  public check(point: Point) {
+    const request: PointRequestDTO = {
+      point: {
+        x: Number(point.x.toFixed(6)),
+        y: Number(point.y.toFixed(6))
+      },
+      area: this.areaConfig.config.getValue()
+    }
+
     console.log(`Sending point check request:`)
     console.log(request)
 
