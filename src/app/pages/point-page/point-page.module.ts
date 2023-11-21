@@ -15,6 +15,7 @@ import {PipesModule} from "../../pipes/pipes.module";
 import {MessageModule} from "primeng/message";
 import {ChipModule} from "primeng/chip";
 import {NgChartsModule} from 'ng2-charts';
+import {ToastModule} from "primeng/toast";
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import {NgChartsModule} from 'ng2-charts';
     PipesModule,
     MessageModule,
     ChipModule,
-    NgChartsModule
+    NgChartsModule,
+    ToastModule
   ],
   exports: [
     PointPageComponent

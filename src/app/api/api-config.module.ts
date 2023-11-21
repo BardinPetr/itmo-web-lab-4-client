@@ -1,6 +1,8 @@
 import {NgModule} from "@angular/core";
 import {environment} from '../../environments/environment';
 import {ApiModule, Configuration} from 'itmo-web-lab4';
+import {HTTP_INTERCEPTORS} from "@angular/common/http";
+import {ApiErrorInterceptor} from "./api-error-interceptor.service";
 
 export function apiConfigFactory(): Configuration {
   return new Configuration({
@@ -10,7 +12,10 @@ export function apiConfigFactory(): Configuration {
 
 @NgModule({
   imports: [ApiModule.forRoot(apiConfigFactory)],
-  exports: [ApiModule]
+  exports: [ApiModule],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: ApiErrorInterceptor, multi: true }
+  ]
 })
 export class ApiConfigModule {
 }

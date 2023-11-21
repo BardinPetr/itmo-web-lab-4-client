@@ -11,6 +11,10 @@ import {AuthConfigModule} from './auth/auth-config.module';
 import {ApiConfigModule} from "./api/api-config.module";
 import {HttpClientModule} from "@angular/common/http";
 import {ComponentsModule} from "./components/components.module";
+import {ToastModule} from "primeng/toast";
+import {MessageModule} from "primeng/message";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {MessageService} from "primeng/api";
 
 @NgModule({
   declarations: [
@@ -21,15 +25,18 @@ import {ComponentsModule} from "./components/components.module";
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    AuthConfigModule,
     ApiConfigModule,
+    AuthConfigModule,
     AppRoutingModule,
     ComponentsModule,
     ServicesModule,
     PipesModule,
-    PagesModule
+    PagesModule,
+    BrowserAnimationsModule,
+    ToastModule,
+    MessageModule,
   ],
-  providers: [],
+  providers: [MessageService],
   exports: [],
   bootstrap: [AppComponent]
 })

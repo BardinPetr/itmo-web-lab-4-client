@@ -38,11 +38,11 @@ const baseUrl = window.location.origin
   })],
   exports: [AuthModule],
   providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
-      multi: true
-    }
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: AuthInterceptor,
+    //   multi: true
+    // }
   ]
 })
 export class AuthConfigModule {

@@ -2,15 +2,16 @@ import {Injectable} from '@angular/core';
 import {Point, PointControllerService, PointRequestDTO} from "itmo-web-lab4";
 import {PointsService} from "./points.service";
 import {AreaScaleService} from "./area-scale.service";
+import {MessageService} from "primeng/api";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PointCheckService {
-
   constructor(private api: PointControllerService,
               private pointService: PointsService,
-              private areaConfig: AreaScaleService) {
+              private areaConfig: AreaScaleService,
+              private message: MessageService) {
   }
 
   public check(point: Point) {
@@ -30,12 +31,21 @@ export class PointCheckService {
       .subscribe({
         next: (result => {
           console.info(`Check ID=${result.id} -> ${result.inside}`)
+          this.message.add({
+            summary: 'Checked!',
+            detail: `Point is ${result.inside ? "in" : "out"}side of area`,
+            severity: result.inside ? 'success' : 'warn'
+          })
           this.pointService.insertLocal(result)
         }),
         error: ((error) => {
           console.error("Point check error")
           console.error(error)
-          // TODO UI
+          this.message.add({
+            summary: 'Failed to check',
+            detail: 'Invalid request',
+            severity: 'error'
+          });
         })
       })
   }

@@ -2,19 +2,21 @@ import {Injectable} from '@angular/core';
 import {PointControllerService, PointResultDTO} from "itmo-web-lab4";
 import {BehaviorSubject, map, Observable} from "rxjs";
 import {AuthService} from "../auth/auth.service";
+import {MessageService} from "primeng/api";
 
 type PointRecords = {
   [id: number]: PointResultDTO
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PointsService {
   private readonly dataSubject = new BehaviorSubject<PointRecords>({});
 
   constructor(private api: PointControllerService,
-              private auth: AuthService) {
+              private auth: AuthService,
+              private message: MessageService) {
     this.pull()
   }
 
@@ -37,7 +39,11 @@ export class PointsService {
           this.dataSubject.next(content)
         },
         error: (err) => {
-          console.error(err) //TODO
+          this.message.add({
+            summary: 'Error',
+            detail: 'Failed to remove',
+            severity: 'error'
+          });
         }
       })
   }
@@ -50,7 +56,11 @@ export class PointsService {
           this.dataSubject.next({})
         },
         error: (err) => {
-          console.error(err) //TODO
+          this.message.add({
+            summary: 'Error',
+            detail: 'Failed to remove',
+            severity: 'error'
+          });
         }
       })
   }
