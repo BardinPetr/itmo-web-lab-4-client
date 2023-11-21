@@ -25,7 +25,7 @@ export class PointCheckService {
         error: ((error) => {
           console.error("Point check error")
           console.error(error)
-            // TODO UI
+          // TODO UI
         })
       })
   }

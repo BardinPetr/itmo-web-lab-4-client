@@ -1,14 +1,14 @@
-<div class="card"
+<div class="card flex"
      *ngIf="(authService.authenticated | async); else not_authenticated"
 >
-  <p-chip
-    [label]="(authService.username | async)"
-    *ngIf="(authService.username | async)"
+  <p-tag
     icon="pi pi-user"
+    [value]="(authService.username | async)"
+    *ngIf="(authService.username | async)"
+    [severity]="((authService.isInRole('admin') | async) ?? false) ? 'danger' : 'success'"
   />
   <p-button
     label="Logout"
-    severity="secondary"
     [outlined]="true"
     icon="pi pi-sign-out"
     (onClick)="authService.logout()"

@@ -7,10 +7,10 @@ import {ButtonModule} from "primeng/button";
   declarations: [
     HomePageComponent
   ],
-    imports: [
-        CommonModule,
-        ButtonModule
-    ],
+  imports: [
+    CommonModule,
+    ButtonModule
+  ],
   exports: [
     HomePageComponent
   ]

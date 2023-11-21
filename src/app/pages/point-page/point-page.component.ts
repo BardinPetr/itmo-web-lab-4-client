@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {AuthService} from "../../auth/auth.service";
 
 @Component({
   selector: 'app-point-page',
@@ -6,5 +7,8 @@ import {Component} from '@angular/core';
   styleUrls: ['./point-page.component.sass']
 })
 export class PointPageComponent {
+
+  constructor(public auth: AuthService) {
+  }
 
 }

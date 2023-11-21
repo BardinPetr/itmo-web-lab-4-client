@@ -10,6 +10,7 @@ import {PipesModule} from "./pipes/pipes.module";
 import {AuthConfigModule} from './auth/auth-config.module';
 import {ApiConfigModule} from "./api/api-config.module";
 import {HttpClientModule} from "@angular/common/http";
+import {ComponentsModule} from "./components/components.module";
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import {HttpClientModule} from "@angular/common/http";
     AuthConfigModule,
     ApiConfigModule,
     AppRoutingModule,
+    ComponentsModule,
     ServicesModule,
     PipesModule,
     PagesModule

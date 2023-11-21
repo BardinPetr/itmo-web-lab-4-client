@@ -1,4 +1,4 @@
-<app-point-canvas></app-point-canvas>
-<app-area-control></app-area-control>
-<app-point-form></app-point-form>
-<app-point-table></app-point-table>
+<app-point-canvas/>
+<app-area-control *ngIf="auth.isInRole('create_points') | async"/>
+<app-point-form *ngIf="auth.isInRole('create_points') | async"/>
+<app-point-table/>

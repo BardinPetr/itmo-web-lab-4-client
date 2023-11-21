@@ -17,7 +17,10 @@
 
     <ng-template pTemplate="body" let-point>
       <tr>
-        <td>{{point.timestamp*1000 | date : 'dd.MM.yy hh:mm:ss'}}</td>
+        <td>{{point.timestamp * 1000 | date : 'dd.MM.yy hh:mm:ss'}}</td>
+        <td *ngIf="(auth.isInRole('admin') | async) ?? false">
+          <p-chip [label]="point.owner" icon="pi pi-user"></p-chip>
+        </td>
         <td>
           <i class="pi"
              [ngClass]="{ 'text-green-500 pi-check-circle': point.inside, 'text-red-500 pi-times-circle': !point.inside }"
@@ -26,7 +29,7 @@
         <td>{{point.areaR   | number: '0.2-2'}}</td>
         <td>{{point.pointX  | number: '0.2-2'}}</td>
         <td>{{point.pointY  | number: '0.2-2'}}</td>
-        <td>{{point.executionTimeNs/1e3 | number: '0.0-0'}}</td>
+        <td>{{point.executionTimeNs / 1e3 | number: '0.0-0'}}</td>
       </tr>
     </ng-template>
 

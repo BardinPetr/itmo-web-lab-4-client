@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {PointControllerService, PointResultDTO} from "itmo-web-lab4";
 import {BehaviorSubject, map, Observable} from "rxjs";
+import {AuthService} from "../auth/auth.service";
 
 type PointRecords = {
   [id: number]: PointResultDTO
@@ -12,7 +13,8 @@ type PointRecords = {
 export class PointsService {
   private readonly dataSubject = new BehaviorSubject<PointRecords>({});
 
-  constructor(private api: PointControllerService) {
+  constructor(private api: PointControllerService,
+              private auth: AuthService) {
     this.pull()
   }
 
@@ -63,10 +65,12 @@ export class PointsService {
   }
 
   public pull() {
-      console.log(this.api)
-    this.api
-      .findOwn()
-      .pipe(map(list => Object.fromEntries(list.map(i => [i.id, i]))))
-      .subscribe(this.dataSubject.next.bind(this.dataSubject))
+    this.auth
+      .isInRole("read_points_all")
+      .subscribe(readAll => {
+        (readAll ? this.api.findAll() : this.api.findOwn())
+          .pipe(map(list => Object.fromEntries(list.map(i => [i.id, i]))))
+          .subscribe(this.dataSubject.next.bind(this.dataSubject))
+      })
   }
 }

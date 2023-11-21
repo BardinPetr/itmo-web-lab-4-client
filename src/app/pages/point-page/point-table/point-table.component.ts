@@ -1,6 +1,18 @@
 import {Component, OnInit} from '@angular/core';
-import {PointResultDTO} from "itmo-web-lab4";
 import {PointsService} from "../../../services/points.service";
+import {AuthService} from "../../../auth/auth.service";
+
+const BASE_COLUMNS = [
+  {header: "Timestamp", sort: "timestamp"},
+  {header: "User", sort: ""},
+  {header: "Inside", sort: ""},
+  {header: "R", sort: "areaR"},
+  {header: "X", sort: "pointX"},
+  {header: "Y", sort: "pointY"},
+  {header: "Execution Time, ms", sort: ""}
+]
+
+const ADMIN_COLUMNS = ["User"]
 
 @Component({
   selector: 'app-point-table',
@@ -8,21 +20,15 @@ import {PointsService} from "../../../services/points.service";
   styleUrls: ['./point-table.component.sass']
 })
 export class PointTableComponent implements OnInit {
-  columns = [
-    {
-      header: "Timestamp",
-      sort: "timestamp"
-    },
-    {
-      header: "Inside", sort: ""
-    },
-    {header: "R", sort: "areaR"},
-    {header: "X", sort: "pointX"},
-    {header: "Y", sort: "pointY"},
-    {header: "Execution Time, ms", sort: ""}
-  ]
+  public columns = BASE_COLUMNS
 
-  constructor(private pointService: PointsService) {
+  constructor(private pointService: PointsService,
+              public auth: AuthService) {
+    auth
+      .isInRole('admin')
+      .subscribe(admin =>
+        this.columns = BASE_COLUMNS.filter(({header}) => admin || !ADMIN_COLUMNS.includes(header))
+      );
   }
 
   get points() {

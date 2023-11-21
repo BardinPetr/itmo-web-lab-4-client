@@ -13,6 +13,7 @@ import {CardModule} from "primeng/card";
 import {InputTextModule} from "primeng/inputtext";
 import {PipesModule} from "../../pipes/pipes.module";
 import {MessageModule} from "primeng/message";
+import {ChipModule} from "primeng/chip";
 
 
 @NgModule({
@@ -23,17 +24,18 @@ import {MessageModule} from "primeng/message";
     PointPageComponent,
     AreaControlComponent
   ],
-    imports: [
-        CommonModule,
-        TableModule,
-        ButtonModule,
-        RadioButtonModule,
-        CardModule,
-        ReactiveFormsModule,
-        InputTextModule,
-        PipesModule,
-        MessageModule
-    ],
+  imports: [
+    CommonModule,
+    TableModule,
+    ButtonModule,
+    RadioButtonModule,
+    CardModule,
+    ReactiveFormsModule,
+    InputTextModule,
+    PipesModule,
+    MessageModule,
+    ChipModule
+  ],
   exports: [
     PointPageComponent
   ]
