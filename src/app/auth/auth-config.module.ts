@@ -1,7 +1,8 @@
 import {NgModule} from '@angular/core';
-import {AuthInterceptor, AuthModule} from 'angular-auth-oidc-client';
+import {AbstractSecurityStorage, AuthInterceptor, AuthModule} from 'angular-auth-oidc-client';
 import {environment} from '../../environments/environment'
 import {HTTP_INTERCEPTORS} from "@angular/common/http";
+import {AuthStorageService} from "./auth-storage.service";
 
 const customRequestParams = {
   client_secret: environment.idcClientSecret
@@ -33,16 +34,21 @@ const baseUrl = window.location.origin
       ignoreNonceAfterRefresh: true,
       renewTimeBeforeTokenExpiresInSeconds: 30,
       secureRoutes: [environment.apiUrl],
+      startCheckSession: true,
       ...keycloakCustomParams
     }
   })],
   exports: [AuthModule],
   providers: [
-    // {
-    //   provide: HTTP_INTERCEPTORS,
-    //   useClass: AuthInterceptor,
-    //   multi: true
-    // }
+    {
+      provide: AbstractSecurityStorage,
+      useClass: AuthStorageService
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
   ]
 })
 export class AuthConfigModule {
