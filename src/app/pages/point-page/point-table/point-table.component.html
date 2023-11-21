@@ -4,6 +4,8 @@
            [paginator]="true"
            [showCurrentPageReport]="true"
            [rows]="10"
+           responsiveLayout="stack"
+           [breakpoint]="'656px'"
            currentPageReportTemplate="{first}-{last} / {totalRecords}"
   >
     <ng-template pTemplate="header" let-cols>
@@ -17,19 +19,36 @@
 
     <ng-template pTemplate="body" let-point>
       <tr>
-        <td>{{point.timestamp * 1000 | date : 'dd.MM.yy HH:mm:ss'}}</td>
+        <td>
+          <span class="p-column-title">{{allColumns[0].header}}</span>
+          {{point.timestamp * 1000 | date : 'dd.MM.yy HH:mm:ss'}}
+        </td>
         <td *ngIf="(auth.isInRole('admin') | async) ?? false">
+          <span class="p-column-title">{{allColumns[1].header}}</span>
           <p-chip [label]="point.owner" icon="pi pi-user"></p-chip>
         </td>
         <td>
+          <span class="p-column-title">{{allColumns[2].header}}</span>
           <i class="pi"
              [ngClass]="{ 'text-green-500 pi-check-circle': point.inside, 'text-red-500 pi-times-circle': !point.inside }"
           ></i>
         </td>
-        <td>{{point.areaR   | number: '0.2-2'}}</td>
-        <td>{{point.pointX  | number: '0.2-2'}}</td>
-        <td>{{point.pointY  | number: '0.2-2'}}</td>
-        <td>{{point.executionTimeNs / 1e3 | number: '0.0-0'}}</td>
+        <td>
+          <span class="p-column-title">{{allColumns[3].header}}</span>
+          {{point.areaR   | number: '0.2-2'}}
+        </td>
+        <td>
+          <span class="p-column-title">{{allColumns[4].header}}</span>
+          {{point.pointX  | number: '0.2-2'}}
+        </td>
+        <td>
+          <span class="p-column-title">{{allColumns[5].header}}</span>
+          {{point.pointY  | number: '0.2-2'}}
+        </td>
+        <td>
+          <span class="p-column-title">{{allColumns[6].header}}</span>
+          {{point.executionTimeNs / 1e3 | number: '0.0-0'}}
+        </td>
       </tr>
     </ng-template>
 

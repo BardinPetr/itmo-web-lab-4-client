@@ -20,6 +20,7 @@ const ADMIN_COLUMNS = ["User"]
   styleUrls: ['./point-table.component.sass']
 })
 export class PointTableComponent implements OnInit {
+  public allColumns = BASE_COLUMNS
   public columns = BASE_COLUMNS
 
   constructor(private pointService: PointsService,

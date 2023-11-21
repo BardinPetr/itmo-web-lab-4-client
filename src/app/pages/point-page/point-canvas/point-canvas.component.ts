@@ -31,7 +31,7 @@ export class PointCanvasComponent implements AfterViewInit {
     },
     animation: false,
     maintainAspectRatio: false,
-    // aspectRatio: 1,
+    aspectRatio: 2,
     scales: {
       x: {
         min: -1,
